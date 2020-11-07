@@ -1,0 +1,34 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+$text-color: rgba(0, 0, 0, 0.9);
+
+$brown: #a76d60;
+$yellow: #ffc107;
+$green: #28a745;
+$red: #dc3545;
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  padding-top: 2rem;
+  color: $text-color;
+  max-width: 1180px;
+  padding: 1rem;
+  margin: auto;
+  .header {
+    text-align: center;
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  @import 'form';
+  @import 'cards';
+}

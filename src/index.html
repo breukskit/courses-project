@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=htmlWebpackPlugin.options.title%></title>
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="header">Get a free course</h1>
+      <form id="form">
+        <label for="name" class="name-label">
+          <input type="text" id="name" placeholder="Costumer Name" />
+        </label>
+        <label for="course" class="course-label">
+          <input type="text" id="course" placeholder="Course" />
+        </label>
+        <label for="author" class="author-label">
+          <input type="text" id="author" placeholder="Author" />
+        </label>
+        <button id="submit" type="submit">submit</button>
+      </form>
+      <section class="cards">
+        <div class="cards-wrapper">
+          <div class="card">
+            <img src="https://source.unsplash.com/random/400x400" alt="" />
+            <p class="name-p">
+              <span class="name-s">Name:</span><span>John Anderson</span>
+            </p>
+            <p class="course-p">
+              <span class="course-s">Course:</span><span>Css Basics</span>
+            </p>
+            <p class="author-p">
+              <span class="author-s">Author:</span><span>John Anderson</span>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

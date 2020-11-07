@@ -1,0 +1,39 @@
+.cards {
+  width: 100%;
+  .cards-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    .card {
+      margin: 1rem;
+      max-width: 350px;
+      img {
+        width: 100%;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        margin-bottom: 0.75rem;
+        .name-s {
+          background: $yellow;
+        }
+        .course-s {
+          background: $green;
+        }
+        .author-s {
+          background: $red;
+          color: #fff;
+        }
+        span {
+          &:first-child {
+            margin-right: 1rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  }
+}
