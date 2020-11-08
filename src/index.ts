@@ -36,39 +36,48 @@ const handleChange = () => {
   });
 };
 
+const handleRemoveBtn = (arg?: string) => {
+  if (courses.length < 1) {
+    DOMElems.clear.style.display = 'none';
+  } else {
+    DOMElems.clear.style.display = 'inline-block';
+  }
+};
+
+const rng = () => Math.floor(Math.random() * 5 + 1);
+
 const setLoader = () => {
   const loader = document.createElement('div') as HTMLDivElement;
   loader.className = 'loader';
   DOMElems.cardsContainer.appendChild(loader);
+  DOMElems.clear.style.display = 'none';
+  const overlay = document.createElement('div') as HTMLDivElement;
+  overlay.className = 'overlay';
+  document.body.appendChild(overlay);
 };
 
 const cardFactory = () => {
   if (courses.length !== 0) {
     DOMElems.cardsContainer.innerHTML = '';
     DOMElems.cardsWrapper.innerHTML = '';
+    setLoader();
     courses.forEach((element) => {
+      const random = rng();
       const card = document.createElement('div') as HTMLDivElement;
       card.className = 'card';
-      card.innerHTML = `<img src="https://source.unsplash.com/random/400x40${Math.ceil(
-        Math.random() * 5
-      )}" alt="Placeholder" /><p class="name-p">
-              <span class="name-s">Name:</span><span>${
-                element.customerName
-              }</span>
+      card.innerHTML = `<img src="https://source.unsplash.com/random/400x40${random}" alt="Placeholder" /><p class="name-p">
+              <span class="name-s">Name:</span><span>${element.customerName}</span>
             </p><p class="course-p">
-              <span class="course-s">Course:</span><span>${
-                element.course
-              }</span>
+              <span class="course-s">Course:</span><span>${element.course}</span>
             </p><p class="author-p">
-              <span class="author-s">Author:</span><span>${
-                element.author
-              }</span>
+              <span class="author-s">Author:</span><span>${element.author}</span>
             </p>`;
       DOMElems.cardsWrapper.appendChild(card);
     });
-    setLoader();
     setTimeout(() => {
       DOMElems.cardsContainer.innerHTML = '';
+      (document.querySelector('.overlay') as HTMLDivElement).remove();
+      handleRemoveBtn();
       DOMElems.cardsContainer.appendChild(DOMElems.cardsWrapper);
     }, 2000);
   }
@@ -96,12 +105,14 @@ const clearCourses = () => {
   localStorage.removeItem('courses');
   courses = [];
   DOMElems.cardsWrapper.innerHTML = '';
+  handleRemoveBtn();
 };
 
 const onLoad = () => {
   insertIcons();
   setListeners();
   handleStorage();
+  handleRemoveBtn();
   cardFactory();
 };
 
