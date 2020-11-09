@@ -46,8 +46,6 @@ const handleRemoveBtn = () => {
   }
 };
 
-const rng = () => Math.floor(Math.random() * 8);
-
 const setLoader = () => {
   const loader = document.createElement('div') as HTMLDivElement;
   loader.className = 'loader';
@@ -114,6 +112,9 @@ const clearCourses = () => {
   courses = [];
   DOMElems.cardsWrapper.innerHTML = '';
   handleRemoveBtn();
+  DOMElems.form.querySelectorAll('input').forEach((input) => {
+    input.style.border = '.2rem solid #a76d60';
+  });
 };
 
 const onLoad = () => {
