@@ -29,14 +29,16 @@ const handleChange = () => {
 
   !indicator ? (DOMElems.btn.disabled = false) : (DOMElems.btn.disabled = true);
 
-  arr.forEach((input: HTMLInputElement) => {
-    input.value === ''
-      ? (input.style.border = '.2rem solid #FF0000')
-      : (input.style.border = '.2rem solid #a76d60');
-  });
+  if (!document.querySelector('.overlay')) {
+    arr.forEach((input: HTMLInputElement) => {
+      input.value === ''
+        ? (input.style.border = '.2rem solid #FF0000')
+        : (input.style.border = '.2rem solid #a76d60');
+    });
+  }
 };
 
-const handleRemoveBtn = (arg?: string) => {
+const handleRemoveBtn = () => {
   if (courses.length < 1) {
     DOMElems.clear.style.display = 'none';
   } else {
@@ -44,7 +46,7 @@ const handleRemoveBtn = (arg?: string) => {
   }
 };
 
-const rng = () => Math.floor(Math.random() * 5 + 1);
+const rng = () => Math.floor(Math.random() * 8);
 
 const setLoader = () => {
   const loader = document.createElement('div') as HTMLDivElement;
@@ -61,11 +63,17 @@ const cardFactory = () => {
     DOMElems.cardsContainer.innerHTML = '';
     DOMElems.cardsWrapper.innerHTML = '';
     setLoader();
-    courses.forEach((element) => {
-      const random = rng();
+    let number = 0;
+    courses.forEach((element, i) => {
+      number = i;
+      if (i > 9) {
+        let ratio = Number(String(i).slice(1)) + 2;
+        number = 10 - ratio;
+      }
+      console.log(number);
       const card = document.createElement('div') as HTMLDivElement;
       card.className = 'card';
-      card.innerHTML = `<img src="https://source.unsplash.com/random/400x40${random}" alt="Placeholder" /><p class="name-p">
+      card.innerHTML = `<img src="https://source.unsplash.com/random/400x40${number}" alt="Placeholder" /><p class="name-p">
               <span class="name-s">Name:</span><span>${element.customerName}</span>
             </p><p class="course-p">
               <span class="course-s">Course:</span><span>${element.course}</span>
